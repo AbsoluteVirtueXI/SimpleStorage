@@ -1,6 +1,7 @@
 /* eslint-disable space-before-function-paren */
 /* eslint-disable no-undef */
 const hre = require('hardhat');
+const { deployed } = require('./deployed');
 
 async function main() {
   // Hardhat always runs the compile task when running scripts with its command
@@ -22,8 +23,8 @@ async function main() {
   // soit incluse dans un bloc
   await simpleStorage.deployed();
 
-  // Afficher l'adresse de déploiement
-  console.log('SimpleStorage deployed to:', simpleStorage.address);
+  // update deployed.json and print usefull information on the console.
+  await deployed('SimpleStorage', hre.network.name, simpleStorage.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
